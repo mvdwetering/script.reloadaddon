@@ -31,11 +31,7 @@ def do_rpc(method:str, params:Dict) -> Tuple[bool, Any]:
         "params": params
     }
     response = xbmc.executeJSONRPC(json.dumps(jsonrpc))
-
-    success = False
-    if "result" in response:
-        success = True
-    return (success, json.loads(response))
+    return ("result" in response, json.loads(response))
 
 
 def enable_addon(addon_id:str, enable:bool) -> bool:
