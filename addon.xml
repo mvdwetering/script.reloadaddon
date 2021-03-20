@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.reloadaddon" name="Reload Addon" version="0.0.1" provider-name="Michel van de Wetering">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.python.script" library="addon.py"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Reload an addon</summary>
+        <description lang="en_GB">Allows reloading of an addon. Can be bound to a key for easy access.</description>
+        <language></language>
+        <platform>all</platform>
+        <license>MIT</license>
+        <forum></forum>
+        <website></website>
+        <email>michel.van.de.wetering@gmail.com</email>
+        <source>https://github.com/mvdwetering/script.reloadaddon</source>
+        <news></news>
+        <disclaimer></disclaimer>
+        <assets>
+            <icon>resources/icon.png</icon>
+            <fanart>resources/fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>
