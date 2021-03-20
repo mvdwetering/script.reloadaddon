@@ -8,6 +8,7 @@ import json
 
 import xbmcaddon
 import xbmc
+import xbmcgui
 
 # Keep this file to a minimum, as Kodi
 # doesn't keep a compiled copy of this
@@ -18,8 +19,8 @@ addon_id_to_reload = "service.autostreamselect"
 # addon_id_to_reload = "service.xbmc.versioncheck"
 
 
-def notify(message):
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(ADDON.getAddonInfo('name'), message, 5000, ADDON.getAddonInfo('icon')))
+def notify(message:str, icon=ADDON.getAddonInfo('icon')):
+    xbmcgui.Dialog().notification(ADDON.getAddonInfo('name'), message, icon, 5000)
 
 
 def do_rpc(method:str, params:Dict) -> Tuple[bool, Any]:
@@ -75,7 +76,7 @@ except Exception as e:
     ok = False
 
 if ok:
-    notify(f"{addon_id_to_reload} success")
+    notify(f"{addon_id_to_reload}\nsuccess", xbmcgui.NOTIFICATION_INFO)
 else:
-    notify(f"{addon_id_to_reload} failed")
+    notify(f"{addon_id_to_reload}\nfailed", xbmcgui.NOTIFICATION_WARNING)
 
