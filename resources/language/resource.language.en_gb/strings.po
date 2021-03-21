@@ -23,5 +23,9 @@ msgid "Addon to reload"
 msgstr ""
 
 msgctxt "#32002"
-msgid "Addonid of the addond that should be reloaded when executing the script."
+msgid "AddonID of the addon that should be reloaded when executing the script."
+msgstr ""
+
+msgctxt "#32003"
+msgid "The addon configured to be reloaded is invalid.\n\nReconfigure now?"
 msgstr ""

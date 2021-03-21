@@ -15,7 +15,7 @@ import xbmcgui
 ADDON = xbmcaddon.Addon()
 logger = logging.getLogger(ADDON.getAddonInfo('id'))
 
-addon_id_to_reload = "service.autostreamselect"
+addon_id_to_reload = ADDON.getSettingString("addonid")
 # addon_id_to_reload = "service.xbmc.versioncheck"
 
 
@@ -58,15 +58,25 @@ def wait_for_enabled_status(desired_status:bool, timeout:int=10):
             raise(TimeoutError)
 
 
-# Main
+# Validate settings
+try:
+    xbmcaddon.Addon(addon_id_to_reload)
+except RuntimeError:
+    # Occurs when addon_id_to_reload is invalid
+    addon_id_to_reload = ""
 
+if not addon_id_to_reload:
+    if xbmcgui.Dialog().yesno(ADDON.getAddonInfo("name"), ADDON.getLocalizedString(32003)):
+        ADDON.openSettings()
+    exit(0)
+
+# Reload
 ok = True
 try:
     ok &= enable_addon(addon_id_to_reload, False)
     wait_for_enabled_status(False)
     ok &= enable_addon(addon_id_to_reload, True)
     wait_for_enabled_status(True)
-
 except Exception as e:
     logger.exception(e)
     ok = False
